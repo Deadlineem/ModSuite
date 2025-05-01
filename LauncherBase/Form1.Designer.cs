@@ -51,6 +51,8 @@
             this.guna2GradientButton9 = new Guna.UI2.WinForms.Guna2GradientButton();
             this.guna2GradientButton10 = new Guna.UI2.WinForms.Guna2GradientButton();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2GradientButton11 = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -108,6 +110,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
+            this.tabPage2.Controls.Add(this.guna2Separator2);
+            this.tabPage2.Controls.Add(this.guna2GradientButton11);
             this.tabPage2.Controls.Add(this.guna2GradientButton6);
             this.tabPage2.Controls.Add(this.guna2HtmlLabel2);
             this.tabPage2.Controls.Add(this.guna2GradientButton5);
@@ -375,6 +379,31 @@
             this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.White;
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             // 
+            // guna2GradientButton11
+            // 
+            this.guna2GradientButton11.Animated = true;
+            this.guna2GradientButton11.BackColor = System.Drawing.Color.Transparent;
+            this.guna2GradientButton11.BorderRadius = 5;
+            this.guna2GradientButton11.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2GradientButton11.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2GradientButton11.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2GradientButton11.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2GradientButton11.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2GradientButton11.FillColor = System.Drawing.Color.Red;
+            this.guna2GradientButton11.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.guna2GradientButton11, "guna2GradientButton11");
+            this.guna2GradientButton11.ForeColor = System.Drawing.Color.White;
+            this.guna2GradientButton11.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.guna2GradientButton11.Name = "guna2GradientButton11";
+            this.guna2GradientButton11.ShadowDecoration.Depth = 10;
+            this.guna2GradientButton11.ShadowDecoration.Enabled = true;
+            this.guna2GradientButton11.Click += new System.EventHandler(this.guna2GradientButton11_Click);
+            // 
+            // guna2Separator2
+            // 
+            resources.ApplyResources(this.guna2Separator2, "guna2Separator2");
+            this.guna2Separator2.Name = "guna2Separator2";
+            // 
             // LauncherBase
             // 
             resources.ApplyResources(this, "$this");
@@ -422,6 +451,8 @@
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton9;
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton10;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
+        private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton11;
+        private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
     }
 }
 

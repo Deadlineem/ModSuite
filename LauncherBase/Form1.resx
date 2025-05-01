@@ -395,7 +395,7 @@
     <value>2</value>
   </data>
   <data name="guna2Separator1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 190</value>
+    <value>8, 189</value>
   </data>
   <data name="guna2Separator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>734, 10</value>
@@ -604,6 +604,54 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="guna2Separator2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 189</value>
+  </data>
+  <data name="guna2Separator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>734, 10</value>
+  </data>
+  <data name="guna2Separator2.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;guna2Separator2.Name" xml:space="preserve">
+    <value>guna2Separator2</value>
+  </data>
+  <data name="&gt;&gt;guna2Separator2.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Separator, Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261</value>
+  </data>
+  <data name="&gt;&gt;guna2Separator2.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;guna2Separator2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="guna2GradientButton11.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="guna2GradientButton11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 139</value>
+  </data>
+  <data name="guna2GradientButton11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 45</value>
+  </data>
+  <data name="guna2GradientButton11.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="guna2GradientButton11.Text" xml:space="preserve">
+    <value>Uninstall YimMenuV2</value>
+  </data>
+  <data name="&gt;&gt;guna2GradientButton11.Name" xml:space="preserve">
+    <value>guna2GradientButton11</value>
+  </data>
+  <data name="&gt;&gt;guna2GradientButton11.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2GradientButton, Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261</value>
+  </data>
+  <data name="&gt;&gt;guna2GradientButton11.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;guna2GradientButton11.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="guna2GradientButton6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
   </data>
@@ -629,7 +677,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;guna2GradientButton6.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="guna2HtmlLabel2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12.25pt</value>
@@ -656,7 +704,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;guna2HtmlLabel2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="guna2GradientButton5.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
@@ -683,7 +731,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;guna2GradientButton5.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
     <value>184, 4</value>

@@ -426,5 +426,40 @@ namespace LauncherBase
                 MessageBox.Show($"Error deleting settings.json files:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void guna2GradientButton11_Click(object sender, EventArgs e)
+        {
+            string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string yimV2Folder = Path.Combine(appData, "YimMenuV2");
+            string yimV2DllPath = Path.Combine(appData, "ModSuite", "GTA V (Enhanced)", "YimMenuV2.dll");
+
+            try
+            {
+                // Delete YimMenu folder
+                if (Directory.Exists(yimV2Folder))
+                {
+                    Directory.Delete(yimV2Folder, true); // true to delete all contents
+                }
+                else
+                {
+                    MessageBox.Show("YimMenuV2 folder not found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                // Delete YimMenu.dll
+                if (File.Exists(yimV2DllPath))
+                {
+                    File.Delete(yimV2DllPath);
+                    MessageBox.Show("YimMenuV2 has been uninstalled successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("YimMenuV2.dll not found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to delete YimMenuV2.\n\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
