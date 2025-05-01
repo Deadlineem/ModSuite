@@ -6,19 +6,18 @@
 
 ## 🔧 Features
 
-- 🔽 One-click mod downloads from trusted sources  
-- 🧠 Automatic mod management and version control  
-- 🚀 Real-time mod injection with status feedback  
-- 📁 Clean UI for browsing and managing mod libraries  
-- 🔐 Safe and secure – no bundled malware or bloatware  
+- 🔽 One-click mod downloads/updates from trusted sources   
+- 🚀 Simple 1-click Mod Injection 
+- 📁 Clean UI for browsing supported mods on supported titles  
+- 🔐 Safe and secure – no bundled malware or bloatware
 
 ---
 
 ## 🖥️ System Requirements
 
 - **OS:** Windows 10/11  
-- **.NET:** .NET Framework 4.8 or later  
-- **Storage:** At least 200MB free  
+- **.NET:** .NET Framework 4.7.2 or later  
+- **Storage:** At least 1GB free (For Mods & Launcher)
 - **Privileges:** Admin rights required for mod injection
 
 ---
@@ -26,10 +25,10 @@
 ## 📦 Installation
 
 1. **Download ModSuite:**
-   - Visit the [official release page](https://example.com) and download the latest version of `ModSuite.exe`.
+   - Visit the [official release page](https://No-Current-URL/) and download the latest version of `ModSuite.exe` for your platform (32 bit and 64 bit supported).
 
-2. **Run Installer or Executable:**
-   - No installation required if using the portable version.
+2. **Run Executable:**
+   - No installation required!
    - Launch `ModSuite.exe` to get started.
 
 ---
