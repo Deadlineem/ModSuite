@@ -600,8 +600,25 @@ namespace LauncherBase
                             PlaceholderText = "Enter the process name (without .exe)",
                             Location = new Point(8, 90),
                             Size = new Size(280, 45),
-                            BackColor = Color.FromArgb(24, 24, 24)
+                            BorderRadius = 5,
+                            BorderColor = Color.Red,
+                            BorderThickness = 1,
+                            FillColor = Color.FromArgb(34, 34, 34),
+                            ForeColor = Color.White,
+                            PlaceholderForeColor = Color.Gray,
+                            BackColor = Color.Transparent,
+                            Animated = true,
+                            FocusedState =
+                            {
+                                BorderColor = Color.DarkRed
+                            },
+                                                    HoverState =
+                            {
+                                BorderColor = Color.DarkOrange
+                            }
                         };
+
+
 
                         var inputDialog = new Guna.UI2.WinForms.Guna2Panel
                         {

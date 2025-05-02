@@ -52,18 +52,22 @@
             // 
             // guna2TextBox1
             // 
+            this.guna2TextBox1.Animated = true;
+            this.guna2TextBox1.BorderColor = System.Drawing.Color.Red;
+            this.guna2TextBox1.BorderRadius = 5;
             this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2TextBox1.DefaultText = "";
             this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.DarkRed;
             this.guna2TextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.DarkOrange;
             this.guna2TextBox1.Location = new System.Drawing.Point(18, 99);
             this.guna2TextBox1.Name = "guna2TextBox1";
-            this.guna2TextBox1.PlaceholderText = "";
+            this.guna2TextBox1.PlaceholderText = "Name of the Game you want to add mods for";
             this.guna2TextBox1.SelectedText = "";
             this.guna2TextBox1.Size = new System.Drawing.Size(351, 36);
             this.guna2TextBox1.TabIndex = 0;
@@ -71,18 +75,22 @@
             // 
             // guna2TextBox2
             // 
+            this.guna2TextBox2.Animated = true;
+            this.guna2TextBox2.BorderColor = System.Drawing.Color.Red;
+            this.guna2TextBox2.BorderRadius = 5;
             this.guna2TextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2TextBox2.DefaultText = "";
             this.guna2TextBox2.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.guna2TextBox2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.guna2TextBox2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.guna2TextBox2.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.guna2TextBox2.FocusedState.BorderColor = System.Drawing.Color.DarkRed;
             this.guna2TextBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2TextBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox2.HoverState.BorderColor = System.Drawing.Color.DarkOrange;
             this.guna2TextBox2.Location = new System.Drawing.Point(18, 162);
             this.guna2TextBox2.Name = "guna2TextBox2";
-            this.guna2TextBox2.PlaceholderText = "";
+            this.guna2TextBox2.PlaceholderText = "URL to download your Mod .exe or .dll from";
             this.guna2TextBox2.SelectedText = "";
             this.guna2TextBox2.Size = new System.Drawing.Size(351, 36);
             this.guna2TextBox2.TabIndex = 1;
@@ -91,36 +99,36 @@
             // guna2CustomCheckBox1
             // 
             this.guna2CustomCheckBox1.Checked = true;
-            this.guna2CustomCheckBox1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CustomCheckBox1.CheckedState.BorderColor = System.Drawing.Color.Red;
             this.guna2CustomCheckBox1.CheckedState.BorderRadius = 2;
             this.guna2CustomCheckBox1.CheckedState.BorderThickness = 0;
-            this.guna2CustomCheckBox1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CustomCheckBox1.CheckedState.FillColor = System.Drawing.Color.DarkRed;
             this.guna2CustomCheckBox1.Location = new System.Drawing.Point(18, 213);
             this.guna2CustomCheckBox1.Name = "guna2CustomCheckBox1";
             this.guna2CustomCheckBox1.Size = new System.Drawing.Size(20, 20);
             this.guna2CustomCheckBox1.TabIndex = 3;
             this.guna2CustomCheckBox1.Text = "guna2CustomCheckBox1";
-            this.guna2CustomCheckBox1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CustomCheckBox1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.guna2CustomCheckBox1.UncheckedState.BorderRadius = 2;
             this.guna2CustomCheckBox1.UncheckedState.BorderThickness = 0;
-            this.guna2CustomCheckBox1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CustomCheckBox1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.guna2CustomCheckBox1.Click += new System.EventHandler(this.guna2CustomCheckBox1_Click);
             // 
             // guna2CustomCheckBox2
             // 
-            this.guna2CustomCheckBox2.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CustomCheckBox2.CheckedState.BorderColor = System.Drawing.Color.Red;
             this.guna2CustomCheckBox2.CheckedState.BorderRadius = 2;
             this.guna2CustomCheckBox2.CheckedState.BorderThickness = 0;
-            this.guna2CustomCheckBox2.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CustomCheckBox2.CheckedState.FillColor = System.Drawing.Color.DarkRed;
             this.guna2CustomCheckBox2.Location = new System.Drawing.Point(18, 247);
             this.guna2CustomCheckBox2.Name = "guna2CustomCheckBox2";
             this.guna2CustomCheckBox2.Size = new System.Drawing.Size(20, 20);
             this.guna2CustomCheckBox2.TabIndex = 4;
             this.guna2CustomCheckBox2.Text = "guna2CustomCheckBox2";
-            this.guna2CustomCheckBox2.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CustomCheckBox2.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.guna2CustomCheckBox2.UncheckedState.BorderRadius = 2;
             this.guna2CustomCheckBox2.UncheckedState.BorderThickness = 0;
-            this.guna2CustomCheckBox2.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CustomCheckBox2.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.guna2CustomCheckBox2.Click += new System.EventHandler(this.guna2CustomCheckBox2_Click);
             // 
             // guna2GradientButton1
@@ -194,9 +202,11 @@
             this.guna2CircleButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2CircleButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2CircleButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2CircleButton1.FillColor = System.Drawing.Color.Red;
+            this.guna2CircleButton1.FillColor = System.Drawing.Color.DarkRed;
+            this.guna2CircleButton1.FocusedColor = System.Drawing.Color.Red;
             this.guna2CircleButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2CircleButton1.ForeColor = System.Drawing.Color.White;
+            this.guna2CircleButton1.HoverState.FillColor = System.Drawing.Color.Red;
             this.guna2CircleButton1.Location = new System.Drawing.Point(336, 13);
             this.guna2CircleButton1.Name = "guna2CircleButton1";
             this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
