@@ -164,7 +164,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Newtonsoft.Json.xml" />
     <EmbeddedResource Include="Newtonsoft.Json.dll" />
     <EmbeddedResource Include="Guna.UI2.dll" />
     <Content Include="ModSuite-Logo.ico" />
