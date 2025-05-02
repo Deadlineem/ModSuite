@@ -11,12 +11,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json;
+using System.Net.Http;
+using Microsoft.VisualBasic;
+using Guna.UI2.WinForms;
 
 
 namespace LauncherBase
 {
     public partial class LauncherBase : Form
     {
+
         // Injector Directives
         [DllImport("kernel32.dll", SetLastError = true)]
         static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
@@ -460,6 +465,311 @@ namespace LauncherBase
             {
                 MessageBox.Show($"Failed to delete YimMenuV2.\n\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public GameTab NewGameTab { get; private set; }
+
+        private string jsonFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ModSuite", "user_tabs.json");
+        private List<GameTab> userTabs = new List<GameTab>();
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoadUserTabs();
+            InitializeAddGameTab();
+        }
+        private void LoadUserTabs()
+        {
+            // Check if the JSON file exists
+            if (!File.Exists(jsonFilePath)) return;
+
+            // Read the JSON file
+            string json = File.ReadAllText(jsonFilePath);
+
+            // Deserialize the JSON into the userTabs list
+            userTabs = JsonConvert.DeserializeObject<List<GameTab>>(json);
+
+            // Check for existing tabs, including their names
+            List<string> existingTabNames = guna2TabControl1.TabPages
+                .Cast<TabPage>()
+                .Select(tab => tab.Text)
+                .ToList();
+
+            // Identify the + Add Game tab
+            var addGameTab = guna2TabControl1.TabPages
+                .Cast<TabPage>()
+                .FirstOrDefault(tab => tab.Text == "+ Add Mod");
+
+            // Remove the + Add Game tab temporarily if it exists
+            if (addGameTab != null)
+            {
+                guna2TabControl1.TabPages.Remove(addGameTab);
+            }
+
+            // Add user tabs, ensuring no duplicates
+            foreach (var tab in userTabs)
+            {
+                if (!string.IsNullOrWhiteSpace(tab.GameName) && !existingTabNames.Contains(tab.GameName))
+                {
+                    // Create and add the tab for the game
+                    CreateGameTab(tab);
+                }
+            }
+
+            // After adding user tabs, re-add the + Add Game tab
+            if (addGameTab != null)
+            {
+                guna2TabControl1.TabPages.Add(addGameTab);
+            }
+        }
+
+        private void CreateGameTab(GameTab tabData)
+        {
+            var tab = new TabPage(tabData.GameName);
+            tab.BackColor = Color.FromArgb(24, 24, 24);
+
+            string gameFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ModSuite", tabData.GameName);
+            Directory.CreateDirectory(gameFolder);
+
+            string fileName = Path.GetFileName(tabData.DownloadUrl);
+            if (!fileName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) &&
+                !fileName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+            {
+                fileName += ".exe"; // or handle dynamically based on tabData.Type if needed
+            }
+            string filePath = Path.Combine(gameFolder, fileName);
+
+            // Download button
+            // Download button
+            var downloadButton = new Guna.UI2.WinForms.Guna2GradientButton
+            {
+                Text = "Download " + tabData.GameName + " Mod",
+                Location = new Point(8, 35),
+                Size = new Size(180, 45),
+                Animated = true,
+                BackColor = Color.Transparent,
+                BorderRadius = 5,
+                FillColor = Color.Red,
+                FillColor2 = Color.FromArgb(50, 0, 0),
+                ForeColor = Color.White,
+                GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical,
+                ShadowDecoration = { Depth = 10, Enabled = true }
+            };
+
+            downloadButton.Click += async (s, e) =>
+            {
+                using (var client = new HttpClient())
+                {
+                    try
+                    {
+                        // Check if the file name doesn't already end with .exe, then add it
+                        if (!fileName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                        {
+                            fileName += ".exe"; // Ensure we add the .exe extension if missing
+                        }
+
+                        string fullFilePath = Path.Combine(gameFolder, fileName);
+
+                        // Set headers to simulate a real browser request (optional, in case the server requires it)
+                        client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+
+                        // Download the file bytes from the URL
+                        var data = await client.GetByteArrayAsync(tabData.DownloadUrl);
+
+                        // Synchronously save the file with the .exe extension
+                        File.WriteAllBytes(fullFilePath, data);
+
+                        // Confirm download success
+                        MessageBox.Show($"Download completed: {fullFilePath}");
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle errors, display message
+                        MessageBox.Show("Download failed: " + ex.Message);
+                    }
+                }
+            };
+
+            // Launch/Inject button
+            var actionButton = new Guna.UI2.WinForms.Guna2GradientButton
+            {
+                Text = filePath.EndsWith(".dll") ? "Inject DLL" : "Launch Trainer",
+                Location = new Point(8, 87),
+                Size = new Size(180, 45),
+                Animated = true,
+                BackColor = Color.Transparent,
+                BorderRadius = 5,
+                FillColor = Color.Red,
+                FillColor2 = Color.FromArgb(50, 0, 0),
+                ForeColor = Color.White,
+                GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical,
+                ShadowDecoration = { Depth = 10, Enabled = true }
+            };
+
+            actionButton.Click += (s, e) =>
+            {
+                if (File.Exists(filePath))
+                {
+                    if (filePath.EndsWith(".dll"))
+                    {
+                        // Use a Guna2 dialog to get the process name
+                        var processNameTextBox = new Guna.UI2.WinForms.Guna2TextBox
+                        {
+                            PlaceholderText = "Enter the process name (without .exe)",
+                            Location = new Point(20, 120),
+                            Size = new Size(180, 40)
+                        };
+
+                        var inputDialog = new Guna.UI2.WinForms.Guna2Panel
+                        {
+                            Size = new Size(240, 200),
+                            Location = new Point(20, 200),
+                            BackColor = Color.White
+                        };
+
+                        var okButton = new Guna.UI2.WinForms.Guna2GradientButton
+                        {
+                            Text = "OK",
+                            Location = new Point(20, 170),
+                            Size = new Size(75, 30),
+                            Animated = true,
+                            BackColor = Color.Transparent,
+                            BorderRadius = 5,
+                            FillColor = Color.Red,
+                            FillColor2 = Color.FromArgb(50, 0, 0),
+                            ForeColor = Color.White,
+                            GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical,
+                            ShadowDecoration = { Depth = 10, Enabled = true }
+                        };
+
+                        okButton.Click += (sender, args) =>
+                        {
+                            string processName = processNameTextBox.Text;
+                            if (!string.IsNullOrWhiteSpace(processName))
+                            {
+                                bool success = InjectDll(processName, filePath);
+                                MessageBox.Show(success ? "DLL injected successfully." : "DLL injection failed.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please enter a valid process name.");
+                            }
+
+                            inputDialog.Visible = false;  // Hide the dialog after pressing OK
+                        };
+
+                        inputDialog.Controls.Add(processNameTextBox);
+                        inputDialog.Controls.Add(okButton);
+                        tab.Controls.Add(inputDialog);
+                    }
+                    else
+                    {
+                        Process.Start(filePath);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("File not found. Please download first.");
+                }
+            };
+
+            // Uninstall button
+            if (tabData.UninstallOption)
+            {
+                var uninstallButton = new Guna.UI2.WinForms.Guna2GradientButton
+                {
+                    Text = "Uninstall",
+                    Location = new Point(8, 139),
+                    Size = new Size(180, 45),
+                    Animated = true,
+                    BackColor = Color.Transparent,
+                    BorderRadius = 5,
+                    FillColor = Color.Red,
+                    FillColor2 = Color.FromArgb(50, 0, 0),
+                    ForeColor = Color.White,
+                    GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical,
+                    ShadowDecoration = { Depth = 10, Enabled = true }
+                };
+
+                uninstallButton.Click += (s, e) =>
+                {
+                    if (Directory.Exists(gameFolder))
+                    {
+                        Directory.Delete(gameFolder, true);
+                        MessageBox.Show("Game files deleted.");
+                    }
+                };
+
+                tab.Controls.Add(uninstallButton);
+            }
+
+
+            tab.Controls.Add(downloadButton);
+            tab.Controls.Add(actionButton);
+            guna2TabControl1.TabPages.Insert(guna2TabControl1.TabPages.Count - 1, tab);
+        }
+
+        private void InitializeAddGameTab()
+        {
+            // Check if the "+ Add Game" tab already exists
+            if (guna2TabControl1.TabPages["AddGameTab"] == null)
+            {
+                var addTab = new TabPage("+ Add Game");
+                addTab.Name = "AddGameTab";  // Set a name to check for existence
+                guna2TabControl1.TabPages.Add(addTab);
+            }
+        }
+
+        private void Guna2TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedTab = guna2TabControl1.SelectedTab;
+
+            if (selectedTab != null && selectedTab.Text == "+ Add Game")
+            {
+                // Temporarily disable event to prevent recursion
+                guna2TabControl1.SelectedIndexChanged -= Guna2TabControl1_SelectedIndexChanged;
+
+                // Remove the Add Game tab to prevent blank tab showing
+                guna2TabControl1.TabPages.Remove(selectedTab);
+
+                var addForm = new AddGameTab();
+                if (addForm.ShowDialog() == DialogResult.OK)
+                {
+                    var newTab = addForm.NewGameTab;
+                    userTabs.Add(newTab);
+                    SaveUserTabs();
+                    CreateGameTab(newTab);
+                }
+
+                // Re-add "+ Add Game" tab at the end
+                InitializeAddGameTab();
+
+                // Re-subscribe event
+                guna2TabControl1.SelectedIndexChanged += Guna2TabControl1_SelectedIndexChanged;
+            }
+        }
+        private void guna2TabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage.Text == "+ Add Game")
+            {
+                e.Cancel = true; // Prevent it from rendering
+
+                var addForm = new AddGameTab();
+                if (addForm.ShowDialog() == DialogResult.OK)
+                {
+                    var newTab = addForm.NewGameTab;
+                    userTabs.Add(newTab);
+                    SaveUserTabs();
+                    CreateGameTab(newTab);
+                }
+
+                // Re-add "+ Add Game" to the end in case it got removed
+                guna2TabControl1.TabPages.RemoveByKey("+ Add Game");
+                InitializeAddGameTab();
+            }
+        }
+
+        private void SaveUserTabs()
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath));
+            File.WriteAllText(jsonFilePath, JsonConvert.SerializeObject(userTabs, Formatting.Indented));
         }
     }
 }
