@@ -90,6 +90,7 @@
             // 
             // guna2CustomCheckBox1
             // 
+            this.guna2CustomCheckBox1.Checked = true;
             this.guna2CustomCheckBox1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2CustomCheckBox1.CheckedState.BorderRadius = 2;
             this.guna2CustomCheckBox1.CheckedState.BorderThickness = 0;

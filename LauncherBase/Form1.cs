@@ -537,7 +537,6 @@ namespace LauncherBase
             string filePath = Path.Combine(gameFolder, fileName);
 
             // Download button
-            // Download button
             var downloadButton = new Guna.UI2.WinForms.Guna2GradientButton
             {
                 Text = "Download " + tabData.GameName + " Mod",
@@ -693,9 +692,34 @@ namespace LauncherBase
                     if (Directory.Exists(gameFolder))
                     {
                         Directory.Delete(gameFolder, true);
-                        MessageBox.Show("Game files deleted.");
                     }
+
+                    // Load existing tab data
+                    string jsonPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ModSuite", "user_tabs.json");
+                    if (File.Exists(jsonPath))
+                    {
+                        try
+                        {
+                            string json = File.ReadAllText(jsonPath);
+                            var tabList = JsonConvert.DeserializeObject<List<GameTab>>(json);
+
+                            // Remove the tab with matching name
+                            tabList.RemoveAll(t => t.GameName == tabData.GameName);
+
+                            // Save updated list
+                            File.WriteAllText(jsonPath, JsonConvert.SerializeObject(tabList, Formatting.Indented));
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Failed to update tab data: {ex.Message}");
+                        }
+                    }
+
+                    // Remove tab from UI
+                    guna2TabControl1.TabPages.Remove(tab);
+                    MessageBox.Show("Game files and tab data deleted.");
                 };
+
 
                 tab.Controls.Add(uninstallButton);
             }
@@ -712,10 +736,12 @@ namespace LauncherBase
             if (guna2TabControl1.TabPages["AddGameTab"] == null)
             {
                 var addTab = new TabPage("+ Add Game");
-                addTab.Name = "AddGameTab";  // Set a name to check for existence
+                addTab.Name = "AddGameTab";
+                addTab.BackColor = Color.FromArgb(24, 24, 24); // Set background color
                 guna2TabControl1.TabPages.Add(addTab);
             }
         }
+
 
         private void Guna2TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
