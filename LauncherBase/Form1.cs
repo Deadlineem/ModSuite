@@ -532,8 +532,9 @@ namespace LauncherBase
             if (!fileName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) &&
                 !fileName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
             {
-                fileName += ".exe"; // or handle dynamically based on tabData.Type if needed
+                fileName += ".exe";
             }
+
             string filePath = Path.Combine(gameFolder, fileName);
 
             // Download button
@@ -558,33 +559,18 @@ namespace LauncherBase
                 {
                     try
                     {
-                        // Check if the file name doesn't already end with .exe, then add it
-                        if (!fileName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
-                        {
-                            fileName += ".exe"; // Ensure we add the .exe extension if missing
-                        }
-
-                        string fullFilePath = Path.Combine(gameFolder, fileName);
-
-                        // Set headers to simulate a real browser request (optional, in case the server requires it)
-                        client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-
-                        // Download the file bytes from the URL
+                        client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0");
                         var data = await client.GetByteArrayAsync(tabData.DownloadUrl);
-
-                        // Synchronously save the file with the .exe extension
-                        File.WriteAllBytes(fullFilePath, data);
-
-                        // Confirm download success
-                        MessageBox.Show($"Download completed: {fullFilePath}");
+                        File.WriteAllBytes(filePath, data);
+                        MessageBox.Show($"Download completed: {filePath}");
                     }
                     catch (Exception ex)
                     {
-                        // Handle errors, display message
                         MessageBox.Show("Download failed: " + ex.Message);
                     }
                 }
             };
+
 
             // Launch/Inject button
             var actionButton = new Guna.UI2.WinForms.Guna2GradientButton
