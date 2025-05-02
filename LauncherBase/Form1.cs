@@ -15,39 +15,12 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using Microsoft.VisualBasic;
 using Guna.UI2.WinForms;
-using System.Reflection;
+
 
 namespace LauncherBase
 {
     public partial class LauncherBase : Form
     {
-        public static void LoadEmbeddedAssembly()
-        {
-            // The embedded resource name (usually the default namespace + file name)
-            string resourceName = "LauncherBase.Newtonsoft.Json.dll";
-
-            // Get the assembly containing the embedded resource
-            var assembly = Assembly.GetExecutingAssembly();
-
-            // Find the embedded resource
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            {
-                if (stream == null)
-                {
-                    throw new Exception("Resource not found: " + resourceName);
-                }
-
-                // Create a byte array to store the DLL
-                byte[] assemblyBytes = new byte[stream.Length];
-                stream.Read(assemblyBytes, 0, assemblyBytes.Length);
-
-                // Load the assembly from the byte array
-                Assembly loadedAssembly = Assembly.Load(assemblyBytes);
-
-                // Optionally, you can make sure the assembly is referenced correctly
-                AppDomain.CurrentDomain.Load(loadedAssembly.GetName());
-            }
-        }
 
         // Injector Directives
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -501,7 +474,6 @@ namespace LauncherBase
         {
             LoadUserTabs();
             InitializeAddGameTab();
-            LoadEmbeddedAssembly();
         }
         private void LoadUserTabs()
         {
