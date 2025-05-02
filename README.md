@@ -25,7 +25,7 @@
 ## 📦 Installation
 
 1. **Download ModSuite:**
-   - Visit the [official release page](https://No-Current-URL/) and download the latest version of `ModSuite.exe` for your platform (32 bit and 64 bit supported).
+   - Visit the [official release page](https://github.com/Deadlineem/ModSuite/releases/tag/build) and download the latest version of `ModSuite.exe` for your platform (32 bit and 64 bit supported).
 
 2. **Run Executable:**
    - No installation required!
@@ -71,7 +71,7 @@ This will prevent false positives and allow ModSuite to run and inject mods with
 
 ## 🛠 Support & Feedback
 
-- 🐞 Bug Reports & Support: [GitHub Issues](https://github.com/YourUsername/ModSuite/issues)  
+- 🐞 Bug Reports & Support: [GitHub Issues](https://github.com/Deadlineem/ModSuite/issues)  
 
 ---
 
