@@ -598,22 +598,23 @@ namespace LauncherBase
                         var processNameTextBox = new Guna.UI2.WinForms.Guna2TextBox
                         {
                             PlaceholderText = "Enter the process name (without .exe)",
-                            Location = new Point(20, 120),
-                            Size = new Size(180, 40)
+                            Location = new Point(8, 90),
+                            Size = new Size(280, 45),
+                            BackColor = Color.FromArgb(24, 24, 24)
                         };
 
                         var inputDialog = new Guna.UI2.WinForms.Guna2Panel
                         {
-                            Size = new Size(240, 200),
-                            Location = new Point(20, 200),
-                            BackColor = Color.White
+                            Size = new Size(420, 200),
+                            Location = new Point(0, 120),
+                            BackColor = Color.FromArgb(24, 24, 24)
                         };
 
                         var okButton = new Guna.UI2.WinForms.Guna2GradientButton
                         {
-                            Text = "OK",
-                            Location = new Point(20, 170),
-                            Size = new Size(75, 30),
+                            Text = "Inject",
+                            Location = new Point(8, 145),
+                            Size = new Size(180, 45),
                             Animated = true,
                             BackColor = Color.Transparent,
                             BorderRadius = 5,
