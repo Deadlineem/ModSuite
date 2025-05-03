@@ -29,7 +29,7 @@
 
 2. **Run Executable:**
    - No installation required!
-   - Launch `ModSuite.exe` to get started.
+   - Launch `ModSuite_x64.exe` or `ModSuite_x86.exe` to get started.
 
 ---
 
