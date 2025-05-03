@@ -10,8 +10,9 @@ namespace LauncherBase
     {
         public string GameName { get; set; }
         public string DownloadUrl { get; set; }
-        public string ExecutablePath { get; set; } // Path provided by user (not used directly)
-        public string DllPath { get; set; } // Only used if it's a DLL
+        public string ExecutablePath { get; set; } // Menu/Trainer Executable
+        public string DllPath { get; set; } // DLL
+        public string GamePath { get; set; } // Game Executable
         public bool ClearCache { get; set; }
         public bool UninstallOption { get; set; }
     }

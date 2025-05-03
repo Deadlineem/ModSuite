@@ -728,9 +728,123 @@ namespace LauncherBase
                 tab.Controls.Add(uninstallButton);
             }
 
+            var gamePathTextBox = new Guna.UI2.WinForms.Guna2TextBox
+            {
+                PlaceholderText = "Game executable path (e.x. C:\\Games\\GTA5.exe)",
+                Text = tabData.GamePath ?? string.Empty,
+                Location = new Point(200, 35),
+                Size = new Size(360, 45),
+                BorderRadius = 5,
+                BorderColor = Color.Red,
+                BorderThickness = 1,
+                FillColor = Color.FromArgb(34, 34, 34),
+                ForeColor = Color.White,
+                PlaceholderForeColor = Color.Gray,
+                BackColor = Color.Transparent,
+                Animated = true,
+                FocusedState = { BorderColor = Color.DarkRed },
+                HoverState = { BorderColor = Color.DarkOrange }
+            };
+
+            var browseButton = new Guna.UI2.WinForms.Guna2GradientButton
+            {
+                Text = "Browse...",
+                Location = new Point(570, 35),
+                Size = new Size(100, 45),
+                Animated = true,
+                BorderRadius = 5,
+                FillColor = Color.Red,
+                FillColor2 = Color.FromArgb(50, 0, 0),
+                ForeColor = Color.White,
+                GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical,
+                ShadowDecoration = { Depth = 10, Enabled = true }
+            };
+
+            browseButton.Click += (s, e) =>
+            {
+                using (var dialog = new OpenFileDialog())
+                {
+                    dialog.Filter = "Executable files (*.exe)|*.exe";
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        gamePathTextBox.Text = dialog.FileName;
+                        tabData.GamePath = dialog.FileName;
+                    }
+                }
+            };
+
+            var launchGameButton = new Guna.UI2.WinForms.Guna2GradientButton
+            {
+                Text = "Launch Game",
+                Location = new Point(200, 87),
+                Size = new Size(180, 45),
+                Animated = true,
+                BackColor = Color.Transparent,
+                BorderRadius = 5,
+                FillColor = Color.Red,
+                FillColor2 = Color.FromArgb(50, 0, 0),
+                ForeColor = Color.White,
+                GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical,
+                ShadowDecoration = { Depth = 10, Enabled = true }
+            };
+
+            var launchAsAdminCheckBox = new Guna.UI2.WinForms.Guna2CheckBox
+            {
+                Text = "Run as Administrator",
+                Location = new Point(390, 97),
+                Size = new Size(180, 25),
+                CheckedState = { FillColor = Color.Red },
+                UncheckedState = { FillColor = Color.DarkGray },
+                ForeColor = Color.White,
+                BackColor = Color.Transparent,
+                AutoSize = true
+            };
+
+            launchGameButton.Click += (s, e) =>
+            {
+                string pathToLaunch = gamePathTextBox.Text.Trim();
+
+                if (!string.IsNullOrEmpty(pathToLaunch) && File.Exists(pathToLaunch))
+                {
+                    try
+                    {
+                        // ✅ Update the GamePath in userTabs and save
+                        var currentTab = userTabs.FirstOrDefault(t => t.GameName == tabData.GameName);
+                        if (currentTab != null)
+                        {
+                            currentTab.GamePath = pathToLaunch;
+
+                            string updatedJson = JsonConvert.SerializeObject(userTabs, Formatting.Indented);
+                            File.WriteAllText(jsonFilePath, updatedJson);
+                        }
+
+                        // ✅ Launch game with optional admin
+                        var startInfo = new ProcessStartInfo(pathToLaunch);
+                        if (launchAsAdminCheckBox.Checked)
+                        {
+                            startInfo.UseShellExecute = true;
+                            startInfo.Verb = "runas";
+                        }
+
+                        Process.Start(startInfo);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to launch game.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Game executable not found. Please browse for a valid path.");
+                }
+            };
 
             tab.Controls.Add(downloadButton);
             tab.Controls.Add(actionButton);
+            tab.Controls.Add(gamePathTextBox);
+            tab.Controls.Add(browseButton);
+            tab.Controls.Add(launchGameButton);
+            tab.Controls.Add(launchAsAdminCheckBox);
             guna2TabControl1.TabPages.Insert(guna2TabControl1.TabPages.Count - 1, tab);
         }
 

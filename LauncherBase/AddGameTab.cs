@@ -27,12 +27,15 @@ namespace LauncherBase
             string exePath = Path.GetExtension(pathInput).Equals(".exe", StringComparison.OrdinalIgnoreCase) ? pathInput : "";
             string dllPath = Path.GetExtension(pathInput).Equals(".dll", StringComparison.OrdinalIgnoreCase) ? pathInput : "";
 
+
+
             NewGameTab = new GameTab
             {
                 GameName = guna2TextBox1.Text.Trim(),
                 DownloadUrl = guna2TextBox2.Text.Trim(),
                 ExecutablePath = exePath,
                 DllPath = dllPath,
+                GamePath = guna2TextBox3.Text.Trim(),
                 ClearCache = guna2CustomCheckBox2.Checked,
                 UninstallOption = guna2CustomCheckBox1.Checked
             };
@@ -40,6 +43,7 @@ namespace LauncherBase
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
 
         // Optional: Clear default events if not used
         private void guna2TextBox1_TextChanged(object sender, EventArgs e) { }
