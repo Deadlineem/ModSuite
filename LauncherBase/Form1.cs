@@ -730,7 +730,7 @@ namespace LauncherBase
 
             var gamePathTextBox = new Guna.UI2.WinForms.Guna2TextBox
             {
-                PlaceholderText = "Game executable path (e.x. C:\\Games\\GTA5.exe)",
+                PlaceholderText = "Game exe path OR URI (ex. com.epicgames.launcher://apps/Fortnite?action=launch&silent=true)",
                 Text = tabData.GamePath ?? string.Empty,
                 Location = new Point(200, 35),
                 Size = new Size(360, 45),
@@ -804,7 +804,7 @@ namespace LauncherBase
             {
                 string pathToLaunch = gamePathTextBox.Text.Trim();
 
-                if (!string.IsNullOrEmpty(pathToLaunch) && File.Exists(pathToLaunch))
+                if (!string.IsNullOrEmpty(pathToLaunch))
                 {
                     try
                     {
@@ -818,15 +818,31 @@ namespace LauncherBase
                             File.WriteAllText(jsonFilePath, updatedJson);
                         }
 
-                        // ✅ Launch game with optional admin
-                        var startInfo = new ProcessStartInfo(pathToLaunch);
-                        if (launchAsAdminCheckBox.Checked)
+                        // ✅ Check if it's a URI launch (Epic Games, etc.)
+                        if (pathToLaunch.StartsWith("com.epicgames.launcher://", StringComparison.OrdinalIgnoreCase))
                         {
-                            startInfo.UseShellExecute = true;
-                            startInfo.Verb = "runas";
+                            Process.Start(new ProcessStartInfo
+                            {
+                                FileName = pathToLaunch,
+                                UseShellExecute = true
+                            });
                         }
+                        else if (File.Exists(pathToLaunch))
+                        {
+                            // ✅ Launch game with optional admin
+                            var startInfo = new ProcessStartInfo(pathToLaunch);
+                            if (launchAsAdminCheckBox.Checked)
+                            {
+                                startInfo.UseShellExecute = true;
+                                startInfo.Verb = "runas";
+                            }
 
-                        Process.Start(startInfo);
+                            Process.Start(startInfo);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Game executable or URI not found. Please provide a valid path or Epic Games URI.");
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -835,7 +851,7 @@ namespace LauncherBase
                 }
                 else
                 {
-                    MessageBox.Show("Game executable not found. Please browse for a valid path.");
+                    MessageBox.Show("Please enter a valid game path or Epic URI.");
                 }
             };
 

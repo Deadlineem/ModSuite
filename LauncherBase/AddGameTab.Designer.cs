@@ -234,7 +234,8 @@
             this.guna2TextBox3.HoverState.BorderColor = System.Drawing.Color.DarkOrange;
             this.guna2TextBox3.Location = new System.Drawing.Point(18, 226);
             this.guna2TextBox3.Name = "guna2TextBox3";
-            this.guna2TextBox3.PlaceholderText = "Game location (Ex: C:\\Program Files\\Games\\GTA V\\GTA5.exe)";
+            this.guna2TextBox3.PlaceholderText = "(Ex: C:\\Path\\To\\GTA5.exe OR com.epicgames.launcher://apps/Fortnite?action=launch&" +
+    "silent=true)";
             this.guna2TextBox3.SelectedText = "";
             this.guna2TextBox3.Size = new System.Drawing.Size(351, 36);
             this.guna2TextBox3.TabIndex = 11;
@@ -244,11 +245,11 @@
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(123, 204);
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(102, 203);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(130, 22);
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(172, 22);
             this.guna2HtmlLabel5.TabIndex = 12;
-            this.guna2HtmlLabel5.Text = "Game Executable";
+            this.guna2HtmlLabel5.Text = "Game EXE Path or URI";
             // 
             // AddGameTab
             // 
